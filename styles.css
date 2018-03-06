@@ -1,0 +1,35 @@
+a:link {
+    color: brown;
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+a:visited {
+    color: lightgreen;
+    background-color: black;
+    text-decoration: bold;
+}
+
+a:hover {
+    color: aqua;
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+a:active {
+    color: lawngreen;
+    background-color: indigo;
+    text-decoration-color: indianred;
+}
+
+tr {
+    text-align: center;
+}
+
+table {
+    border: 3px dashed indianred;
+}
+
+ul {
+    list-style-type: katakana;
+}
