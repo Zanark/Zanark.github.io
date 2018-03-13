@@ -8,6 +8,7 @@ a:link {
     color: brown;
     background-color: transparent;
     text-decoration: underline;
+    font-family: sans-serif;
 }
 
 a:visited {
@@ -45,5 +46,14 @@ p {
     color: lightgreen;
     font-family: 'Courier New', Courier, monospace;
     font-size: larger;
+}
+
+#impt {
+    color: yellow;
+    font-family: sans-serif;
+    font-weight: bold;
+    border-color: yellow;
+    
+    
 }
 
