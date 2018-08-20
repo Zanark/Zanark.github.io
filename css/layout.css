@@ -325,15 +325,15 @@ ul#nav li.current a { color: #F06000; }
    border-radius: 3px 0 0 3px;
 }
 
-.photoshop {
+.php {
   	width: 60%;
-  	-moz-animation: photoshop 2s ease;
-  	-webkit-animation: photoshop 2s ease;
+  	-moz-animation: php 2s ease;
+  	-webkit-animation: php 2s ease;
 }
-.illustrator {
-  	width: 55%;
-  	-moz-animation: illustrator 2s ease;
-  	-webkit-animation: illustrator 2s ease;
+.mySQL {
+  	width: 86%;
+  	-moz-animation: mySQL 2s ease;
+  	-webkit-animation: mySQL 2s ease;
 }
 .wordpress {
   	width: 50%;
@@ -341,7 +341,7 @@ ul#nav li.current a { color: #F06000; }
   	-webkit-animation: wordpress 2s ease;
 }
 .css {
-  	width: 90%;
+  	width: 40%;
   	-moz-animation: css 2s ease;
   	-webkit-animation: css 2s ease;
 }
@@ -351,18 +351,18 @@ ul#nav li.current a { color: #F06000; }
   	-webkit-animation: html5 2s ease;
 }
 .jquery {
-  	width: 50%;
+  	width: 35%;
   	-moz-animation: jquery 2s ease;
   	-webkit-animation: jquery 2s ease;
 }
 
-@-moz-keyframes photoshop {
+@-moz-keyframes php {
   0%   { width: 0px;  }
   100% { width: 60%;  }
 }
-@-moz-keyframes illustrator {
+@-moz-keyframes mySQL {
   0%   { width: 0px;  }
-  100% { width: 55%;  }
+  100% { width: 86%;  }
 }
 @-moz-keyframes wordpress {
   0%   { width: 0px;  }
@@ -370,7 +370,7 @@ ul#nav li.current a { color: #F06000; }
 }
 @-moz-keyframes css {
   0%   { width: 0px;  }
-  100% { width: 90%;  }
+  100% { width: 40%;  }
 }
 @-moz-keyframes html5 {
   0%   { width: 0px;  }
@@ -378,16 +378,16 @@ ul#nav li.current a { color: #F06000; }
 }
 @-moz-keyframes jquery {
   0%   { width: 0px;  }
-  100% { width: 50%;  }
+  100% { width: 35%;  }
 }
 
-@-webkit-keyframes photoshop {
+@-webkit-keyframes php {
   0%   { width: 0px;  }
   100% { width: 60%;  }
 }
-@-webkit-keyframes illustrator {
+@-webkit-keyframes mySQL {
   0%   { width: 0px;  }
-  100% { width: 55%;  }
+  100% { width: 86%;  }
 }
 @-webkit-keyframes wordpress {
   0%   { width: 0px;  }
@@ -395,7 +395,7 @@ ul#nav li.current a { color: #F06000; }
 }
 @-webkit-keyframes css {
   0%   { width: 0px;  }
-  100% { width: 90%;  }
+  100% { width: 40%;  }
 }
 @-webkit-keyframes html5 {
   0%   { width: 0px;  }
@@ -403,7 +403,7 @@ ul#nav li.current a { color: #F06000; }
 }
 @-webkit-keyframes jquery {
   0%   { width: 0px;  }
-  100% { width: 50%;  }
+  100% { width: 35%;  }
 }
 
 /* ------------------------------------------------------------------ */
