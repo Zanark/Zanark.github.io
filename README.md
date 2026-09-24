@@ -73,9 +73,12 @@ The switch supports keyboard input and respects reduced-motion preferences.
 Without JavaScript the content remains available in dark mode, and the inactive
 switch stays hidden.
 
-The crane, warning light and workers use CSS animations. **Pause scene** stops
-all five animated parts using a native checkbox, including without JavaScript.
+The sign's hazard tape scrolls smoothly left in a seamless loop. It joins the
+crane, warning light and workers in CSS animation. **Pause scene** stops all of
+them using a native checkbox, including without JavaScript.
 Reduced motion keeps the scene still and removes the unnecessary pause control.
+The detour page's tape stays still; browsers without CSS `:has()` retain a static
+home-page band rather than showing animation they cannot pause.
 No percentage or countdown pretends to measure actual portfolio progress.
 
 Run the theme, palette contrast, and page-contract tests with Node.js 22 or newer:

@@ -51,3 +51,12 @@ test("warning-band lettering retains a contrasting selected state", () => {
   assert.match(home, /<span class="sign-action">at work<\/span>/);
   assert.match(styles, /\.sign-action::selection \{\s*color: var\(--safety-fill\);\s*background: var\(--safety-ink\);/);
 });
+
+test("sign tape moves left by one repeat and shares pause and reduced-motion controls", () => {
+  assert.ok(styles.includes("@supports selector(body:has(#pause-motion:checked))"));
+  assert.match(styles, /\.work-sign \.hazard-stripe::before \{[^}]*inset: 0 -34px 0 0;[^}]*background-size: 34px 34px;[^}]*animation: hazard-left 2s linear infinite;/);
+  assert.match(styles, /@keyframes hazard-left \{\s*to \{ transform: translateX\(-34px\); \}/);
+  assert.match(styles, /body:has\(#pause-motion:checked\) \.work-sign \.hazard-stripe::before \{\s*animation-play-state: paused;/);
+  const reduced = styles.slice(styles.indexOf("@media (prefers-reduced-motion: reduce)"));
+  assert.match(reduced, /\.work-sign \.hazard-stripe::before \{\s*animation: none;/);
+});
