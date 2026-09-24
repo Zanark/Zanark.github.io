@@ -59,7 +59,7 @@ function loadTheme({ saved = null, readError, writeError } = {}) {
 test("starts dark and does not write a preference just by visiting", () => {
   const app = loadTheme();
   assert.equal(app.root.dataset.theme, "dark");
-  assert.equal(app.themeColor.content, "#0b1220");
+  assert.equal(app.themeColor.content, "#000F13");
   assert.equal(app.toggle.hidden, true);
   app.events.DOMContentLoaded();
   assert.equal(app.toggle.hidden, false);
@@ -76,7 +76,7 @@ for (const saved of ["light", "dark"]) {
     assert.equal(app.root.dataset.themeReady, undefined);
     app.events.DOMContentLoaded();
     assert.equal(app.toggle.attributes["aria-checked"], String(saved === "light"));
-    assert.equal(app.themeColor.content, saved === "light" ? "#f6f7f9" : "#0b1220");
+    assert.equal(app.themeColor.content, saved === "light" ? "#F3F2E9" : "#000F13");
   });
 }
 
@@ -92,11 +92,11 @@ test("toggle updates page, accessible state, label and persisted preference", ()
   assert.equal(app.toggle.attributes["aria-checked"], "true");
   assert.equal(app.label.textContent, "Light");
   assert.equal(app.toggle.title, "Switch to dark theme");
-  assert.equal(app.themeColor.content, "#f6f7f9");
+  assert.equal(app.themeColor.content, "#F3F2E9");
   app.events.click();
   assert.equal(app.root.dataset.theme, "dark");
   assert.equal(app.toggle.attributes["aria-checked"], "false");
-  assert.equal(app.themeColor.content, "#0b1220");
+  assert.equal(app.themeColor.content, "#000F13");
   assert.deepEqual(app.writes, [[storageKey, "light"], [storageKey, "dark"]]);
 });
 

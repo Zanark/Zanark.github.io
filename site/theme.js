@@ -27,7 +27,7 @@
   function applyTheme(nextTheme) {
     theme = nextTheme;
     root.dataset.theme = theme;
-    themeColor.setAttribute("content", theme === "light" ? "#f6f7f9" : "#0b1220");
+    themeColor.setAttribute("content", theme === "light" ? "#F3F2E9" : "#000F13");
     if (toggle) {
       toggle.setAttribute("aria-checked", String(theme === "light"));
       toggle.title = `Switch to ${theme === "light" ? "dark" : "light"} theme`;

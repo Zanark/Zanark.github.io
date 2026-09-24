@@ -1,7 +1,8 @@
 # Zanark's portfolio
 
-A static portfolio hosted on GitHub Pages. The current site is a temporary
-placeholder; the full portfolio's content and design are still to come.
+A static portfolio hosted on GitHub Pages. The current landing page is a small
+construction site: **Zanark at work**, a crane lifting a code block, blueprint
+foundations, cones, and striped barriers. The full portfolio is still to come.
 
 **Website:** [zanark.github.io](https://zanark.github.io/)
 
@@ -11,25 +12,39 @@ placeholder; the full portfolio's content and design are still to come.
 
 ```text
 site/
-  index.html       Temporary landing page
-  404.html         Not-found page
+  index.html       Construction-site landing page
+  404.html         Construction detour / not-found page
+  palette.css      Canonical dark and adapted light colors
   styles.css       Shared responsive styles
   theme.js         Theme preference and toggle
+  favicon.svg      Original hard-hat mark
+  theme-LICENSE.txt  Palette attribution and upstream MIT notice
 tests/
   theme.test.cjs   Dependency-free theme behavior tests
+  palette.test.cjs Palette contrast and public-page contracts
 .github/
   workflows/
     pages.yml      Public-site-only deployment
 ```
 
-The site uses plain HTML, CSS, and a small theme script. It has no package
-dependencies, build step, external fonts, analytics, or backend.
+The site uses plain HTML, CSS, original inline SVG illustrations, and a small
+theme script. It has no package dependencies, build step, external fonts,
+analytics, audio, or backend. This placeholder does not introduce the proposed
+framework for the future portfolio.
 
 ## Themes
 
 Dark is the default, regardless of the operating system's theme. The header
 switch animates a sunrise when entering light mode and a sunset when returning
 to dark mode. Both the homepage and the not-found page share the same switch.
+
+Dark colors preserve the semantic roles of
+[DeepSeaFoam](https://github.com/Zanark/DeepSeaFoam), derived from
+[Solarized](https://ethanschoonover.com/solarized/). The **Harbor Daylight** light
+companion uses warm paper, pale sea-glass panels, deep teal ink, and darker
+seafoam interactions. It is a portfolio-specific adaptation, not a canonical
+upstream light release. Tokens live in `site/palette.css`; attribution and the
+upstream license are retained in `site/theme-LICENSE.txt`.
 
 A visitor's explicit choice is saved only in this site's local storage and
 applied before the page paints. Open tabs stay in sync. If browser storage is
@@ -40,7 +55,12 @@ The switch supports keyboard input and respects reduced-motion preferences.
 Without JavaScript the content remains available in dark mode, and the inactive
 switch stays hidden.
 
-Run the theme behavior tests with Node.js 22 or newer:
+The crane and warning light are CSS animations. **Pause scene** stops both using
+a native checkbox, including without JavaScript. Reduced motion keeps the scene
+still and removes the unnecessary pause control. No percentage or countdown
+pretends to measure actual portfolio progress.
+
+Run the theme, palette contrast, and page-contract tests with Node.js 22 or newer:
 
 ```powershell
 node --test
