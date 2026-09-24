@@ -1,0 +1,75 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    name: Prepare public site
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pages: read
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Check public artifact boundary
+        shell: python
+        run: |
+          from pathlib import Path
+
+          root = Path("site")
+          allowed = {"index.html", "404.html", "styles.css"}
+          if root.is_symlink() or not root.is_dir():
+              raise SystemExit("site must be a real directory")
+          entries = list(root.rglob("*"))
+          for path in entries:
+              if path.is_symlink() or (path.is_file() and path.stat().st_nlink != 1):
+                  raise SystemExit(f"Linked content is not allowed: {path}")
+              if not path.is_file():
+                  raise SystemExit(f"Unexpected directory or special entry: {path}")
+          actual = {path.relative_to(root).as_posix() for path in entries}
+          if actual != allowed:
+              raise SystemExit(f"Unexpected site contents: missing={allowed - actual}, extra={actual - allowed}")
+          for path in entries:
+              if not path.read_text(encoding="utf-8").strip():
+                  raise SystemExit(f"Empty public file: {path}")
+          print(f"Public artifact: {', '.join(sorted(actual))}")
+
+      - name: Configure Pages
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
+
+      - name: Upload public site only
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: site
+          retention-days: 1
+
+  deploy:
+    name: Deploy public site
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1

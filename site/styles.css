@@ -1,0 +1,159 @@
+:root {
+  color-scheme: light;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #172537;
+  background: #f6f7f9;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  --accent: #234dd4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-underline-offset: 0.2em;
+}
+
+a:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 5px;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 1rem;
+  z-index: 1;
+  padding: 0.75rem 1rem;
+  background: white;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  width: min(100% - 3rem, 70rem);
+  min-height: 100vh;
+  min-height: 100svh;
+  margin-inline: auto;
+}
+
+.site-header,
+.site-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.site-header {
+  padding-block: 2rem;
+}
+
+.wordmark {
+  font-size: 1.5rem;
+  font-weight: 750;
+  letter-spacing: -0.06em;
+  text-decoration: none;
+}
+
+.wordmark span {
+  color: var(--accent);
+}
+
+.status {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid #cbd3df;
+  border-radius: 100vmax;
+  color: #455469;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+main {
+  flex: 1;
+  align-content: center;
+  padding-block: clamp(4rem, 10vh, 8rem);
+}
+
+.eyebrow {
+  margin: 0 0 1.5rem;
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.5rem, 7.5vw, 5.75rem);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -0.06em;
+  overflow-wrap: break-word;
+}
+
+.intro {
+  max-width: 35rem;
+  margin: 1.75rem 0 2rem;
+  color: #455469;
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  line-height: 1.8;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.9rem 1.2rem;
+  border: 1px solid var(--accent);
+  border-radius: 0.4rem;
+  color: white;
+  background: var(--accent);
+  font-weight: 600;
+  line-height: 1.5;
+  text-decoration: none;
+}
+
+.button:hover {
+  background: #193ba8;
+}
+
+.site-footer {
+  padding-block: 1.5rem;
+  border-top: 1px solid #cbd3df;
+  color: #455469;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.site-footer a {
+  padding-block: 0.5rem;
+}
+
+@media (max-width: 30rem) {
+  .site-header {
+    padding-block: 1.5rem;
+  }
+
+  .status {
+    font-size: 0.7rem;
+  }
+}
