@@ -32,7 +32,7 @@ jobs:
           from pathlib import Path
 
           root = Path("site")
-          allowed = {"index.html", "404.html", "styles.css"}
+          allowed = {"index.html", "404.html", "styles.css", "theme.js"}
           if root.is_symlink() or not root.is_dir():
               raise SystemExit("site must be a real directory")
           entries = list(root.rglob("*"))
@@ -48,6 +48,9 @@ jobs:
               if not path.read_text(encoding="utf-8").strip():
                   raise SystemExit(f"Empty public file: {path}")
           print(f"Public artifact: {', '.join(sorted(actual))}")
+
+      - name: Test theme preferences
+        run: node --test
 
       - name: Configure Pages
         uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0

@@ -14,13 +14,37 @@ site/
   index.html       Temporary landing page
   404.html         Not-found page
   styles.css       Shared responsive styles
+  theme.js         Theme preference and toggle
+tests/
+  theme.test.cjs   Dependency-free theme behavior tests
 .github/
   workflows/
     pages.yml      Public-site-only deployment
 ```
 
-The site uses plain HTML and CSS. It has no package dependencies, build step,
-JavaScript, external fonts, analytics, or backend.
+The site uses plain HTML, CSS, and a small theme script. It has no package
+dependencies, build step, external fonts, analytics, or backend.
+
+## Themes
+
+Dark is the default, regardless of the operating system's theme. The header
+switch animates a sunrise when entering light mode and a sunset when returning
+to dark mode. Both the homepage and the not-found page share the same switch.
+
+A visitor's explicit choice is saved only in this site's local storage and
+applied before the page paints. Open tabs stay in sync. If browser storage is
+blocked or full, switching still works for the current page and a console
+warning explains that the preference may not persist.
+
+The switch supports keyboard input and respects reduced-motion preferences.
+Without JavaScript the content remains available in dark mode, and the inactive
+switch stays hidden.
+
+Run the theme behavior tests with Node.js 22 or newer:
+
+```powershell
+node --test
+```
 
 ## Local preview
 

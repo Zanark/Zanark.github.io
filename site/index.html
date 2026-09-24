@@ -1,11 +1,13 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="color-scheme" content="light">
+    <meta name="color-scheme" content="dark light">
+    <meta name="theme-color" content="#0b1220">
     <meta name="description" content="Zanark's portfolio is taking shape. A new home for selected work and projects is on the way.">
     <title>Zanark | Portfolio in progress</title>
+    <script src="/theme.js"></script>
     <link rel="stylesheet" href="/styles.css">
   </head>
   <body>
@@ -13,7 +15,21 @@
     <div class="page">
       <header class="site-header">
         <a class="wordmark" href="/" aria-label="Zanark home">Zanark<span aria-hidden="true">.</span></a>
-        <span class="status">Portfolio in progress</span>
+        <div class="header-actions">
+          <span class="status">Portfolio in progress</span>
+          <button class="theme-toggle" type="button" role="switch" aria-label="Light theme"
+            aria-checked="false" title="Switch to light theme" data-theme-toggle hidden>
+            <span class="theme-scene" aria-hidden="true">
+              <span class="theme-daylight"></span>
+              <span class="theme-stars"></span>
+              <span class="theme-sun"></span>
+              <span class="theme-moon"></span>
+              <span class="theme-hills"></span>
+              <span class="theme-water"></span>
+            </span>
+            <span class="theme-label" data-theme-label aria-hidden="true">Dark</span>
+          </button>
+        </div>
       </header>
 
       <main id="main" tabindex="-1">
