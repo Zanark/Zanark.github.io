@@ -33,7 +33,8 @@ jobs:
 
           root = Path("site")
           allowed = {"index.html", "404.html", "styles.css", "theme.js",
-                     "palette.css", "favicon.svg", "theme-LICENSE.txt"}
+                     "palette.css", "favicon.svg", "theme-LICENSE.txt",
+                     "barlow-condensed-800-latin.woff2", "font-LICENSE.txt"}
           if root.is_symlink() or not root.is_dir():
               raise SystemExit("site must be a real directory")
           entries = list(root.rglob("*"))
@@ -46,7 +47,11 @@ jobs:
           if actual != allowed:
               raise SystemExit(f"Unexpected site contents: missing={allowed - actual}, extra={actual - allowed}")
           for path in entries:
-              if not path.read_text(encoding="utf-8").strip():
+              data = path.read_bytes()
+              if path.suffix == ".woff2":
+                  if not data.startswith(b"wOF2"):
+                      raise SystemExit(f"Invalid WOFF2 font: {path}")
+              elif not data.decode("utf-8").strip():
                   raise SystemExit(f"Empty public file: {path}")
           print(f"Public artifact: {', '.join(sorted(actual))}")
 

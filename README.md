@@ -1,8 +1,10 @@
 # Zanark's portfolio
 
 A static portfolio hosted on GitHub Pages. The current landing page is a small
-construction site: **Zanark at work**, a crane lifting a code block, blueprint
-foundations, cones, and striped barriers. The full portfolio is still to come.
+construction site: **Zanark at work**, bold industrial signage, a crane lifting
+a code block, and three hard-hatted workers hammering, signaling, and moving
+materials. Blueprint foundations, cones, and striped barriers complete the
+scene. The full portfolio is still to come.
 
 **Website:** [zanark.github.io](https://zanark.github.io/)
 
@@ -19,18 +21,34 @@ site/
   theme.js         Theme preference and toggle
   favicon.svg      Original hard-hat mark
   theme-LICENSE.txt  Palette attribution and upstream MIT notice
+  barlow-condensed-800-latin.woff2  Self-hosted construction-sign type
+  font-LICENSE.txt  Font provenance and SIL Open Font License
 tests/
   theme.test.cjs   Dependency-free theme behavior tests
   palette.test.cjs Palette contrast and public-page contracts
+  construction.test.cjs Font provenance, sign and worker contracts
 .github/
   workflows/
     pages.yml      Public-site-only deployment
 ```
 
 The site uses plain HTML, CSS, original inline SVG illustrations, and a small
-theme script. It has no package dependencies, build step, external fonts,
-analytics, audio, or backend. This placeholder does not introduce the proposed
-framework for the future portfolio.
+theme script. It has no package dependencies, build step, third-party runtime
+requests, analytics, audio, or backend. This placeholder does not introduce
+the proposed framework for the future portfolio.
+
+## Construction lettering and artwork
+
+The signs use **Barlow Condensed ExtraBold**, an upright, condensed sans-serif,
+in uppercase instead of editorial italic lettering. The unmodified Latin
+WOFF2 is self-hosted (22,464 bytes), preloaded and displayed with a fallback
+while it loads. Visitors do not contact Google Fonts. The font's source,
+SHA-256 and complete SIL Open Font License are in `site/font-LICENSE.txt`.
+Its sign-inspired character is a design choice, not a regulatory signage claim.
+
+All three workers are original SVG illustrations using the existing theme
+palette, hard hats and high-visibility vests. No new palette colors, copied
+character artwork, stock images, or animation dependencies were introduced.
 
 ## Themes
 
@@ -55,10 +73,10 @@ The switch supports keyboard input and respects reduced-motion preferences.
 Without JavaScript the content remains available in dark mode, and the inactive
 switch stays hidden.
 
-The crane and warning light are CSS animations. **Pause scene** stops both using
-a native checkbox, including without JavaScript. Reduced motion keeps the scene
-still and removes the unnecessary pause control. No percentage or countdown
-pretends to measure actual portfolio progress.
+The crane, warning light and workers use CSS animations. **Pause scene** stops
+all five animated parts using a native checkbox, including without JavaScript.
+Reduced motion keeps the scene still and removes the unnecessary pause control.
+No percentage or countdown pretends to measure actual portfolio progress.
 
 Run the theme, palette contrast, and page-contract tests with Node.js 22 or newer:
 

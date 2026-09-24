@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url("/barlow-condensed-800-latin.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+}
+
 :root {
   color-scheme: dark;
   font-family: "Segoe UI Variable Text", Aptos, "Segoe UI", system-ui, sans-serif;
@@ -6,6 +14,7 @@
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   --mono: "Cascadia Code", Consolas, monospace;
+  --sign-font: "Barlow Condensed", Impact, "Arial Narrow", sans-serif;
 }
 
 :root[data-theme="light"] {
@@ -349,7 +358,7 @@ main:focus {
 }
 
 .work-sign {
-  transform: rotate(-1.5deg);
+  transform: rotate(-0.7deg);
 }
 
 .bolt {
@@ -372,8 +381,8 @@ main:focus {
   gap: 0.55rem;
   margin: 0 0 1.8rem;
   color: var(--warning);
-  font: 0.68rem/1.5 var(--mono);
-  letter-spacing: 0.06em;
+  font: 800 1.1rem/1.3 var(--sign-font);
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
@@ -390,7 +399,9 @@ main:focus {
 .sign-caption {
   margin: 1.7rem 0 0;
   color: var(--text);
-  font: 0.75rem/1.6 var(--mono);
+  font: 800 1.1rem/1.4 var(--sign-font);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
 }
 
 .hazard-stripe {
@@ -424,6 +435,35 @@ main:focus {
 
 .site-beacon {
   animation: beacon 3s ease-in-out infinite;
+}
+
+.worker-hammer-arm {
+  transform-origin: 12px 24px;
+  animation: hammer-work 1.8s ease-in-out infinite;
+}
+
+.worker-signal-arm {
+  transform-origin: 13px 24px;
+  animation: crane-signal 3.5s ease-in-out infinite;
+}
+
+.worker-haul-motion {
+  animation: material-haul 5s ease-in-out infinite;
+}
+
+@keyframes hammer-work {
+  0%, 100% { transform: rotate(-22deg); }
+  45%, 60% { transform: rotate(22deg); }
+}
+
+@keyframes crane-signal {
+  0%, 100% { transform: rotate(-8deg); }
+  50% { transform: rotate(13deg); }
+}
+
+@keyframes material-haul {
+  0%, 100% { transform: translateX(-3px); }
+  50% { transform: translateX(7px); }
 }
 
 @keyframes hoist {
@@ -549,18 +589,28 @@ main:focus {
 h1 {
   margin: 0;
   color: var(--heading);
+  font-family: var(--sign-font);
   font-size: clamp(3.5rem, 7.4vw, 6.5rem);
-  font-weight: 650;
-  line-height: 0.98;
-  letter-spacing: -0.06em;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: 0.015em;
+  text-transform: uppercase;
   overflow-wrap: break-word;
 }
 
-h1 em {
-  color: var(--accent);
-  font-family: Georgia, "Times New Roman", serif;
-  font-weight: 400;
-  letter-spacing: -0.065em;
+h1 .sign-action {
+  display: inline-block;
+  margin-top: 0.13em;
+  padding: 0.06em 0.13em 0.12em;
+  color: var(--safety-ink);
+  background: var(--safety-fill);
+  letter-spacing: 0.025em;
+}
+
+.sign-action::selection {
+  color: var(--safety-fill);
+  background: var(--safety-ink);
 }
 
 .intro {
