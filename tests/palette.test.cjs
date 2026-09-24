@@ -61,6 +61,14 @@ test("light mode adapts rather than inverts the dark accent", () => {
   assert.ok(contrast(light.accent, light.background) >= 4.5);
 });
 
+test("text selected on filled actions retains the contrasting button ink", () => {
+  const styles = readFileSync(join(site, "styles.css"), "utf8");
+  assert.match(styles, /\.button::selection,\s*\.button \*::selection\s*\{\s*color: var\(--button-text\);\s*background: var\(--accent-hover\);/);
+  for (const palette of [dark, light]) {
+    assert.ok(contrast(palette["button-text"], palette["accent-hover"]) >= 4.5);
+  }
+});
+
 test("both pages share the palette, theme behavior and existing local assets", () => {
   for (const name of ["index.html", "404.html"]) {
     const html = readFileSync(join(site, name), "utf8");

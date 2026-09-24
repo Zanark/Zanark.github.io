@@ -592,6 +592,12 @@ h1 em {
   border-color: var(--accent-hover);
 }
 
+.button::selection,
+.button *::selection {
+  color: var(--button-text);
+  background: var(--accent-hover);
+}
+
 .site-footer {
   padding-block: 1.5rem;
   border-top: 1px solid var(--separator);
