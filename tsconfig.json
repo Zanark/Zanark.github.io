@@ -1,0 +1,6 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["dist", ".portfolio-input", ".agent-context"],
+  "compilerOptions": { "allowJs": true }
+}

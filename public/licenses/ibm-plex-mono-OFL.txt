@@ -1,15 +1,8 @@
-Bundled font: Barlow Condensed ExtraBold (800), Latin WOFF2
-Source: https://fonts.gstatic.com/s/barlowcondensed/v13/HTxwL3I-JCGChYJ8VI-L6OO_au7B47b1z3bWuQ.woff2
-SHA-256: 2515494e8cc2ca07c86ea78766cfa104b796aa6ed5d66821c01d51dbb0b52bce
-Downloaded unmodified on 2026-09-24. Served locally; no visitor font requests
-are sent to Google. License source:
-https://github.com/google/fonts/blob/main/ofl/barlowcondensed/OFL.txt
-
-Copyright 2017 The Barlow Project Authors (https://github.com/jpt/barlow)
+Copyright © 2017 IBM Corp. with Reserved Font Name "Plex"
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
-This license is copied below, and is also available with a FAQ at:
-http://scripts.sil.org/OFL
+
+This license is copied below, and is also available with a FAQ at: http://scripts.sil.org/OFL
 
 
 -----------------------------------------------------------
@@ -25,7 +18,7 @@ with others.
 
 The OFL allows the licensed fonts to be used, studied, modified and
 redistributed freely as long as they are not sold by themselves. The
-fonts, including any derivative works, can be bundled, embedded,
+fonts, including any derivative works, can be bundled, embedded, 
 redistributed and/or sold with any software provided that any reserved
 names are not used by derivative works. The fonts and derivatives,
 however, cannot be released under any other type of license. The

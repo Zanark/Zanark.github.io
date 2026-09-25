@@ -1,0 +1,36 @@
+---
+const sketch = [
+  "............", "..yy....yy..", "..ffffffff..", ".ffwwffwwff.",
+  ".ffff..ffff.", "..ffffffff..", "...ff..ff...", "..fff..fff..",
+];
+const names: Record<string, string> = { ".": "blank", f: "foam", w: "ivory", y: "yellow", r: "rose" };
+---
+<div class="lab-grid">
+  <noscript><p class="lab-caption">JavaScript enables these two local experiments. All stories and project pages remain readable without it.</p></noscript>
+  <section class="pixel-lab" aria-labelledby="pixel-lab-title" data-reveal>
+    <div class="lab-title"><span class="lab-icon" aria-hidden="true">PX</span><div><h3 id="pixel-lab-title">Leave a little pixel behind.</h3><p>A tiny local sketchpad. No account. No upload.</p></div></div>
+    <div class="sketch-workspace">
+      <div class="pixel-board" role="grid" aria-label="Pixel sketch, 8 rows by 12 columns">
+        {sketch.map((row, y) => <div role="row">{[...row].map((color, x) => <button type="button" role="gridcell" aria-label={`Row ${y + 1}, column ${x + 1}: ${names[color]}`} data-pixel={y * 12 + x} data-color={color} tabindex={y === 0 && x === 0 ? 0 : -1} disabled></button>)}</div>)}
+      </div>
+      <div class="pixel-tools" data-pixel-tools hidden>
+        <div class="paint-palette" role="group" aria-label="Brush colors">{Object.entries(names).map(([color, name]) => <button type="button" class="paint-swatch" data-paint={color} data-color={color} aria-label={`${name} brush`} aria-pressed={color === "f"}></button>)}</div>
+        <button type="button" class="text-button" data-sketch-reset>Reset sketch</button>
+        <button type="button" class="text-button" data-sketch-clear>Clear canvas</button>
+        <button type="button" class="small-button" data-sketch-save>Save PNG</button>
+      </div>
+    </div>
+    <p class="lab-caption" data-sketch-status aria-live="polite">Original concept sketch. Tap to paint; arrow keys move, Space paints.</p>
+  </section>
+  <section class="readiness-lab" aria-labelledby="readiness-title" data-reveal>
+    <div class="lab-title"><span class="lab-icon" aria-hidden="true">?</span><div><h3 id="readiness-title">Not every light means go.</h3><p>A small experiment in engineering judgment.</p></div></div>
+    <p class="simulation-label">SYNTHETIC EXAMPLE / NO LIVE SYSTEMS</p>
+    <div class="evidence-switches">
+      <label><input type="checkbox" data-evidence="collected" disabled /><span>Evidence collected</span><small>Do we actually have an observation?</small></label>
+      <label><input type="checkbox" data-evidence="current" checked disabled /><span>Observation is current</span><small>Does it describe the right moment?</small></label>
+      <label><input type="checkbox" data-evidence="compatible" checked disabled /><span>Requirements satisfied</span><small>Does this option fit the constraints?</small></label>
+    </div>
+    <div class="evidence-result" data-evidence-result data-state="unknown" role="status"><strong data-evidence-title>Not enough evidence</strong><p data-evidence-message>A missing observation is not a failed system, and it is not a ready system.</p></div>
+    <p class="lab-caption">An illustration of the idea, not a reproduction of workplace tooling.</p>
+  </section>
+</div>

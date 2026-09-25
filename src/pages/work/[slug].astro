@@ -1,0 +1,21 @@
+---
+import Television from "../../layouts/Television.astro";
+import Icon from "../../components/Icon.astro";
+import { workStories, type WorkStory } from "../../data/portfolio";
+export function getStaticPaths() { return workStories.map((story) => ({ params: { slug: story.slug }, props: { story } })); }
+interface Props { story: WorkStory; }
+const { story } = Astro.props;
+---
+<Television title={story.title} description={story.summary} channel="work">
+  <article class="detail-page">
+    <a class="back-link" href="/#work"><Icon name="arrow" /> Back to selected work</a>
+    <header class="detail-hero"><p class="eyebrow"><span>CASE {story.number}</span> {story.kicker.toUpperCase()}</p><h1>{story.title}</h1><p class="detail-intro">{story.summary}</p></header>
+    <div class="detail-meta"><div><strong>Contribution</strong>{story.role}</div><div><strong>Context</strong>Professional engineering / generalized narrative</div></div>
+    <div class="tag-row">{story.tools.map((tool) => <span>{tool}</span>)}</div>
+    <div class="detail-body">{story.sections.map((section) => <section><h2>{section.title}</h2><p>{section.text}</p></section>)}
+      <blockquote class="takeaway">{story.takeaway}</blockquote>
+      <p class="editorial-note">Local editorial preview. These descriptions omit customer identities, operational figures and private implementation details. Publication remains subject to review.</p>
+    </div>
+    <div class="detail-actions"><a class="secondary-button" href="/#work">More engineering stories <Icon name="arrow" /></a>{story.slug === "readiness" && <a class="primary-button" href="/#lab">Try the concept sketch <Icon name="play" /></a>}</div>
+  </article>
+</Television>

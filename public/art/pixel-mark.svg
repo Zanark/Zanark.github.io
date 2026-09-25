@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" shape-rendering="crispEdges">
+  <title>Midnight signal</title>
+  <desc>An original angular seafoam Z flowing into a stepped ocean wave, with a single warm signal pixel.</desc>
+  <path d="M8 12h44v12h-8v8h-8v8h-8v8h28v8H12V44h8v-8h8v-8h8v-8H8z" fill="#001E26"/>
+  <path d="M8 8h44v12h-8v8h-8v8h-8v8h28v8H12V40h8v-8h8v-8h8v-8H8z" fill="#00A591"/>
+  <path d="M8 8h36v4H8zM44 12h4v8h-4zM36 20h8v4h-8zM28 28h8v4h-8zM20 36h8v4h-8z" fill="#45D072"/>
+  <path d="M12 48h12v-4h12v4h12v-4h8v8H12z" fill="#EEE8D5"/>
+  <rect x="52" y="8" width="4" height="4" fill="#EBE565"/>
+</svg>

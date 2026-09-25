@@ -1,0 +1,85 @@
+---
+import "../styles/global.css";
+import { channels } from "../data/portfolio";
+import Icon from "../components/Icon.astro";
+interface Props { title: string; description?: string; channel?: string; home?: boolean; }
+const { title, description = "Debashish Mishra's personal signal: software engineering, cloud reliability, and creative tools.", channel = "signal", home = false } = Astro.props;
+const active = channels.find((item) => item.id === channel) ?? channels[0];
+---
+<!doctype html>
+<html lang="en" data-theme="dark" data-crt="on" data-motion="on" data-power="on" data-channel={channel}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#000F13" />
+    <title>{title} | Zanark Signal</title>
+    <link rel="icon" href="/art/pixel-mark.svg" type="image/svg+xml" />
+    <link rel="preload" href="/fonts/pixelify-sans-600-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/ibm-plex-mono-400-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <script is:inline>
+      (() => {
+        try {
+          const root = document.documentElement;
+          root.dataset.theme = localStorage.getItem("zanark.portfolio.theme") === "light" ? "light" : "dark";
+          root.dataset.crt = localStorage.getItem("zanark.signal.crt") === "off" ? "off" : "on";
+          root.dataset.motion = localStorage.getItem("zanark.signal.motion") === "off" ? "off" : "on";
+          document.querySelector('meta[name="theme-color"]').content = root.dataset.theme === "light" ? "#F3F2E9" : "#000F13";
+        } catch (error) {
+          if (!(error instanceof DOMException) || !["SecurityError", "QuotaExceededError"].includes(error.name)) throw error;
+          console.warn("Display preferences are unavailable; using the default display.");
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to portfolio</a>
+    <div class="room">
+      <div class="room-caption"><span>AN INDEPENDENT SIGNAL</span><span class="preview-tag">LOCAL PREVIEW / NOT PUBLISHED</span></div>
+      <div class="television" data-home={String(home)}>
+        <div class="cabinet-top" aria-hidden="true"><span class="screw"></span><span class="vent"></span><span class="screw"></span></div>
+        <div class="tube">
+          <div class="screen-inner" id="screen-content">
+            <header class="screen-header">
+              <a class="screen-brand" href="/#signal" aria-label="Zanark Signal home"><img src="/art/pixel-mark.svg" width="30" height="30" alt="" /><span>ZANARK<span class="brand-suffix">.SIGNAL</span></span></a>
+              <span class="reception"><span aria-hidden="true" class="signal-bars"><i></i><i></i><i></i><i></i></span> PERSONAL TRANSMISSION</span>
+              <a class="profile-link" href="/profile/">PROFILE <Icon name="external" /></a>
+            </header>
+            <nav class="channel-nav" aria-label="Portfolio channels">
+              {channels.map((item) => <a href={`${home ? "" : "/"}#${item.id}`} data-channel-link={item.id} aria-current={item.id === channel ? "location" : undefined}><span>{item.number}</span>{item.label}</a>)}
+            </nav>
+            <main class="screen-scroll" id="main" tabindex="-1" data-scroll-root>
+              <slot />
+              <footer class="screen-footer">
+                <a href="/#signal">ZANARK.SIGNAL</a>
+                <span>Made with curiosity. Tuned with DeepSeaFoam.</span>
+                <a href="/colophon/">About this signal <Icon name="external" /></a>
+              </footer>
+            </main>
+            <div class="screen-status"><span><span class="live-dot" aria-hidden="true"></span> <span data-channel-label>CH {active.number} / {active.label.toUpperCase()}</span></span><span class="status-right">SOFTWARE + RELIABILITY + CREATIVE TOOLS</span></div>
+          </div>
+          <div class="crt-optics" aria-hidden="true"><div class="scanlines"></div><div class="phosphor-mask"></div><div class="glass"></div><div class="scan-beam"></div></div>
+          <div class="standby" hidden data-standby><img src="/art/pixel-mark.svg" width="52" height="52" alt="" /><p>SIGNAL PAUSED</p><span>Press the power button to tune back in.</span></div>
+        </div>
+        <div class="cabinet-bottom">
+          <div class="hardware-brand"><strong>ZANARK</strong><span>SIGNAL-01 / COLOUR DISPLAY</span></div>
+          <div class="speaker" aria-hidden="true"></div>
+          <div class="hardware-controls" data-controls hidden>
+            <div class="tuner-group"><span class="control-caption">CHANNEL</span><div><button type="button" class="hardware-key" data-channel-step="-1" aria-label="Previous channel"><Icon name="left" /></button><button type="button" class="hardware-key" data-channel-step="1" aria-label="Next channel"><Icon name="right" /></button></div></div>
+            <button type="button" class="hardware-key labelled-key" data-crt-toggle aria-pressed="true" aria-label="CRT effects"><Icon name="grid" /><span>CRT</span></button>
+            <button type="button" class="hardware-key labelled-key" data-motion-toggle aria-pressed="true" aria-label="Animation"><Icon name="play" /><span>MOTION</span></button>
+            <button type="button" class="hardware-key theme-key" role="switch" aria-checked="false" aria-label="Light theme" data-theme-toggle><span class="day-night" aria-hidden="true"><span class="day-sun"></span><span class="night-moon"></span><span class="horizon"></span></span><span data-theme-label>DARK</span></button>
+            <button type="button" class="power-button" data-power-toggle aria-label="Turn display off" aria-pressed="true"><Icon name="power" /><span class="power-led" aria-hidden="true"></span></button>
+          </div>
+          <noscript><span class="no-script-hardware">STATIC SIGNAL / JavaScript enables the controls</span></noscript>
+        </div>
+      </div>
+      <div class="tv-feet" aria-hidden="true"><i></i><i></i></div>
+      <p class="desk-note">A different kind of portfolio. <span>Use the channels. Stay curious.</span><kbd class="keyboard-tip">1 - 6</kbd></p>
+    </div>
+    <p class="visually-hidden" role="status" aria-live="polite" data-announcement></p>
+    <script>import "../scripts/television";</script>
+  </body>
+</html>

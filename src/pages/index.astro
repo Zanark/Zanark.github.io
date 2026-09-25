@@ -1,0 +1,79 @@
+---
+import Television from "../layouts/Television.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import SignalLab from "../components/SignalLab.astro";
+import Icon from "../components/Icon.astro";
+import { profile, projects, workStories, timeline, skills } from "../data/portfolio";
+---
+<Television title="Debashish Mishra - Engineer & creative builder" home>
+  <section id="signal" class="channel-section hero-section" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <p class="eyebrow hero-eyebrow"><span class="live-dot"></span> YOU'RE TUNED TO A PERSONAL SIGNAL</p>
+      <p class="hero-name">HELLO, I'M DEBASHISH MISHRA.</p>
+      <h1 id="hero-title">Serious systems.<br /><span>Curious mind.</span></h1>
+      <p class="hero-lede">Software engineer. Reliability thinker.<br />Builder of useful, sometimes playful things.</p>
+      <div class="hero-actions"><a class="primary-button" href="#work">Explore my work <Icon name="arrow" /></a><a class="secondary-button" href="#projects">Open the toy box <Icon name="grid" /></a></div>
+      <div class="hero-tags"><span>APPLICATIONS</span><i></i><span>RELIABILITY</span><i></i><span>CREATIVE TOOLS</span></div>
+    </div>
+    <div class="hero-world" data-reveal>
+      <div class="world-topline"><span class="pixel-bracket">[</span><span>THE WORKSHOP / AFTER HOURS</span><span class="pixel-bracket">]</span></div>
+      <div class="workshop-window"><img class="pixel-art workshop-art" src="/art/workshop.svg" width="480" height="288" alt="Original pixel illustration of a late-night creative workshop overlooking a harbor, with a glowing computer, plants and tools." fetchpriority="high" /><span class="workshop-glimmer" aria-hidden="true"></span></div>
+      <p class="world-caption"><span>BUILD. LEARN. REPEAT.</span><span class="world-cursor" aria-hidden="true">_</span></p>
+    </div>
+    <a class="scroll-cue" href="#work"><span aria-hidden="true">&darr;</span> KEEP TUNING. THERE'S MORE BELOW.</a>
+  </section>
+
+  <section id="work" class="channel-section" aria-labelledby="work-title">
+    <SectionHeader id="work-title" number="02" eyebrow="SELECTED WORK / ENGINEERING" title="Behind the interface, real work." description="Application delivery, operational tooling, and the decisions that connect them. A few stories, with the scope kept honest." />
+    <div class="work-grid">
+      {workStories.map((story) => <a class="work-card" href={`/work/${story.slug}/`} data-reveal>
+        <div class="work-card-top"><span class="card-number">{story.number}</span><span>{story.kicker}</span><Icon name="external" /></div>
+        <h3>{story.title}</h3><p>{story.summary}</p>
+        <div class="tag-row">{story.tools.slice(0, 3).map((tool) => <span>{tool}</span>)}</div>
+        <span class="card-read">Read the engineering notes <Icon name="arrow" /></span>
+      </a>)}
+    </div>
+    <p class="editorial-note">Professional stories are generalized local-review drafts. No customer identities, private topology, or unverified impact counters.</p>
+  </section>
+
+  <section id="projects" class="channel-section projects-section" aria-labelledby="projects-title">
+    <SectionHeader id="projects-title" number="03" eyebrow="THE TOY BOX / INDEPENDENT PROJECTS" title="Curiosity, with a commit history." description="Editors, themes, media tools, and experiments. Personal, AI-assisted builds shaped through iteration and review." />
+    <div class="project-filters" role="group" aria-label="Filter projects" data-project-filters hidden>
+      {[["all", "All signals"], ["creative", "Creative tools"], ["engineering", "Engineering"], ["experiment", "Experiments"]].map(([value, label]) => <button type="button" data-filter={value} aria-pressed={value === "all"}>{label}</button>)}
+    </div>
+    <div class="project-grid">
+      {projects.map((project) => <article class="project-card" data-project-category={project.category} data-reveal>
+        <a class="project-cover" href={`/projects/${project.slug}/`} aria-label={`Explore ${project.title}`}>
+          {project.art ? <img class="pixel-art" src={project.art} width="240" height="160" alt={`Original conceptual pixel illustration for ${project.title}; not a product screenshot.`} loading="lazy" /> : <div class={`glyph-cover glyph-${project.slug}`} aria-hidden="true"><span class="glyph-grid"></span><span>{project.glyph}</span><small>EXPERIMENT / {project.glyph}</small></div>}
+          <span class="project-format">{project.status}</span>
+        </a>
+        <div class="project-copy"><div class="project-title-row"><h3><a href={`/projects/${project.slug}/`}>{project.title}</a></h3><span aria-hidden="true">&nearr;</span></div><p>{project.summary}</p><div class="tag-row">{project.tools.slice(0, 3).map((tool) => <span>{tool}</span>)}</div></div>
+      </article>)}
+    </div>
+    <p class="visually-hidden" aria-live="polite" data-filter-status>Showing all six projects.</p>
+  </section>
+
+  <section id="story" class="channel-section" aria-labelledby="story-title">
+    <div class="story-intro">
+      <SectionHeader id="story-title" number="04" eyebrow="THE LONGER SIGNAL / ABOUT" title="One career. More than one wavelength." />
+      <div class="about-copy"><p>{profile.about}</p><p>I care about the interface between a system and the person using it: what it explains, what it hides, and whether you can trust its next step.</p><a class="text-link" href="/profile/">Open the readable profile <Icon name="arrow" /></a></div>
+    </div>
+    <p class="career-employer">CAREER CHAPTERS AT {profile.employer.toUpperCase()}</p>
+    <div class="career-timeline">{timeline.map((chapter) => <article class="career-chapter" data-reveal><span class="career-year">{chapter.year}</span><div><span class="chapter-role">{chapter.role}</span><h3>{chapter.title}</h3><p>{chapter.text}</p></div></article>)}</div>
+    <div class="skills-grid">{skills.map((group) => <div class="skill-group" data-reveal><h3>{group.title}</h3><ul>{group.items.map((item) => <li>{item}</li>)}</ul></div>)}</div>
+  </section>
+
+  <section id="lab" class="channel-section" aria-labelledby="lab-title">
+    <SectionHeader id="lab-title" number="05" eyebrow="THE SMALL LAB / PLAY WITH AN IDEA" title="Go on. Touch the pixels." description="The best way to explain some ideas is to let you try them. These small, original sketches run entirely in your browser." />
+    <SignalLab />
+  </section>
+
+  <section id="contact" class="channel-section contact-section" aria-labelledby="contact-title">
+    <p class="eyebrow"><span>06</span> KEEP THE SIGNAL GOING</p>
+    <h2 id="contact-title">Good things start<br />with <span>a conversation.</span></h2>
+    <p>Have a tricky system, a useful tool, or a wonderfully odd idea?<br class="desktop-only" /> Find the projects and the person behind them on GitHub.</p>
+    <div class="contact-actions"><a class="primary-button" href={profile.github}>Find me on GitHub <Icon name="external" /></a><a class="secondary-button" href="/profile/">Read my profile <Icon name="arrow" /></a></div>
+    <p class="contact-signoff">DEBASHISH MISHRA <span>/</span> ZANARK</p>
+    <div class="contact-pixels" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+  </section>
+</Television>

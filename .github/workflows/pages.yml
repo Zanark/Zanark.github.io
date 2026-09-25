@@ -1,84 +1,27 @@
-name: Deploy GitHub Pages
+name: Validate unpublished portfolio preview
 
 on:
-  push:
-    branches: [master]
   workflow_dispatch:
 
 permissions:
   contents: read
 
-concurrency:
-  group: github-pages
-  cancel-in-progress: false
-
 jobs:
-  prepare:
-    name: Prepare public site
+  validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
-    permissions:
-      contents: read
-      pages: read
+    timeout-minutes: 10
+    env:
+      ASTRO_TELEMETRY_DISABLED: "1"
     steps:
-      - name: Check out repository
+      - name: Check out source
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-
-      - name: Check public artifact boundary
-        shell: python
-        run: |
-          from pathlib import Path
-
-          root = Path("site")
-          allowed = {"index.html", "404.html", "styles.css", "theme.js",
-                     "palette.css", "favicon.svg", "theme-LICENSE.txt",
-                     "barlow-condensed-800-latin.woff2", "font-LICENSE.txt"}
-          if root.is_symlink() or not root.is_dir():
-              raise SystemExit("site must be a real directory")
-          entries = list(root.rglob("*"))
-          for path in entries:
-              if path.is_symlink() or (path.is_file() and path.stat().st_nlink != 1):
-                  raise SystemExit(f"Linked content is not allowed: {path}")
-              if not path.is_file():
-                  raise SystemExit(f"Unexpected directory or special entry: {path}")
-          actual = {path.relative_to(root).as_posix() for path in entries}
-          if actual != allowed:
-              raise SystemExit(f"Unexpected site contents: missing={allowed - actual}, extra={actual - allowed}")
-          for path in entries:
-              data = path.read_bytes()
-              if path.suffix == ".woff2":
-                  if not data.startswith(b"wOF2"):
-                      raise SystemExit(f"Invalid WOFF2 font: {path}")
-              elif not data.decode("utf-8").strip():
-                  raise SystemExit(f"Empty public file: {path}")
-          print(f"Public artifact: {', '.join(sorted(actual))}")
-
-      - name: Test theme and palette contracts
-        run: node --test
-
-      - name: Configure Pages
-        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
-
-      - name: Upload public site only
-        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+      - name: Set up Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
-          path: site
-          retention-days: 1
-
-  deploy:
-    name: Deploy public site
-    needs: prepare
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
+          node-version: "24"
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build

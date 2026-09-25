@@ -1,0 +1,13 @@
+---
+import Television from "../layouts/Television.astro";
+import Icon from "../components/Icon.astro";
+---
+<Television title="No signal on this channel">
+  <section class="detail-page route-error">
+    <p class="error-code" aria-hidden="true">404</p>
+    <p class="eyebrow">NO SIGNAL ON THIS CHANNEL</p>
+    <h1>A little off-frequency.</h1>
+    <p>That page is not part of this transmission. Tune back to the main signal to find the work, projects and experiments.</p>
+    <a class="primary-button" href="/#signal">Return to the signal <Icon name="arrow" /></a>
+  </section>
+</Television>

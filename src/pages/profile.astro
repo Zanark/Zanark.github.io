@@ -1,0 +1,18 @@
+---
+import Television from "../layouts/Television.astro";
+import Icon from "../components/Icon.astro";
+import { profile, skills, timeline, projects } from "../data/portfolio";
+---
+<Television title="Readable profile" channel="story">
+  <article class="detail-page profile-sheet">
+    <a class="back-link" href="/#story"><Icon name="arrow" /> Back to the story</a>
+    <p class="eyebrow">READABLE PROFILE / LOCAL EDITORIAL PREVIEW</p>
+    <h1>{profile.name}</h1><p class="profile-role">{profile.role}</p>
+    <p class="detail-intro">{profile.intro}</p>
+    <div class="profile-actions"><button type="button" class="primary-button" data-print hidden>Print / save this profile</button><a class="secondary-button" href={profile.github}>GitHub <Icon name="external" /></a></div>
+    <section class="profile-section"><h2>Engineering journey</h2><p>Career chapters at {profile.employer}.</p>{timeline.map((item) => <div><h3>{item.year} / {item.role}</h3><p>{item.text}</p></div>)}</section>
+    <section class="profile-section"><h2>Used in my work</h2>{skills.map((group) => <div><h3>{group.title}</h3><p>{group.items.join(" / ")}</p></div>)}</section>
+    <section class="profile-section"><h2>Independent projects</h2>{projects.map((project) => <div><h3><a href={`/projects/${project.slug}/`}>{project.title}</a> / {project.status}</h3><p>{project.summary}</p></div>)}</section>
+    <p class="editorial-note">A newly written, qualitative profile for local review. This is not a download of a private dossier or an approved public resume. Exact employment titles, credential status and publication wording need separate confirmation.</p>
+  </article>
+</Television>

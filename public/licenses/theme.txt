@@ -1,16 +1,3 @@
-Palette attribution
-
-Dark palette: DeepSeaFoam, https://github.com/Zanark/DeepSeaFoam
-Reference revision: 6cffc615e8abf9a72f1640a823f8cbbc7d685259
-DeepSeaFoam derives from Solarized by Ethan Schoonover:
-https://ethanschoonover.com/solarized/
-
-Harbor Daylight is an original portfolio-specific light companion, not an
-official upstream DeepSeaFoam release. Construction illustrations were created
-for this portfolio. No DeepSeaFoam showcase media or third-party artwork is used.
-
-Upstream theme license
-
 MIT License
 
 Copyright (c) 2026 DeepSeaFoam contributors

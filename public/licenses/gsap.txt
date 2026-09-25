@@ -1,0 +1,17 @@
+GSAP 3.15.0
+Copyright (c) 2008-2026, GreenSock. All rights reserved.
+
+This application uses GSAP for predefined interface entrance animations.
+GSAP is not licensed under the DeepSeaFoam or font licenses.
+
+The installed package declares:
+Standard 'no charge' license: https://gsap.com/standard-license
+
+Current full license:
+https://gsap.com/community/standard-license/
+
+Source package:
+https://www.npmjs.com/package/gsap/v/3.15.0
+
+Consulted 2026-09-25. This notice preserves attribution and links to the
+applicable terms; it is not a replacement license or a grant of additional rights.

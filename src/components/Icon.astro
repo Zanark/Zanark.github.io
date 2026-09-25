@@ -1,0 +1,16 @@
+---
+interface Props { name: "arrow" | "external" | "power" | "left" | "right" | "sun" | "moon" | "grid" | "play"; }
+const { name } = Astro.props;
+const paths = {
+  arrow: "M4 12h15m-6-6 6 6-6 6",
+  external: "M7 5h12v12M19 5 5 19",
+  power: "M12 3v9M6 6a9 9 0 1 0 12 0",
+  left: "m15 5-7 7 7 7",
+  right: "m9 5 7 7-7 7",
+  sun: "M12 2v2m0 16v2M2 12h2m16 0h2M5 5l2 2m10 10 2 2M5 19l2-2M17 7l2-2M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0",
+  moon: "M20 15A9 9 0 0 1 9 4a9 9 0 1 0 11 11",
+  grid: "M3 3h6v6H3zm12 0h6v6h-6zM3 15h6v6H3zm12 0h6v6h-6z",
+  play: "m8 5 11 7-11 7z",
+};
+---
+<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={paths[name]} /></svg>

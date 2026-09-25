@@ -1,0 +1,17 @@
+---
+import Television from "../layouts/Television.astro";
+import Icon from "../components/Icon.astro";
+---
+<Television title="About this signal">
+  <article class="detail-page">
+    <a class="back-link" href="/#signal"><Icon name="arrow" /> Back to the signal</a>
+    <header class="detail-hero"><p class="eyebrow">COLOPHON / HOW THIS TRANSMISSION WORKS</p><h1>An old feeling.<br /><span>A new signal.</span></h1><p class="detail-intro">A portfolio imagined as a late-night colour television: tactile controls, a little phosphor, and a workshop made of pixels.</p></header>
+    <div class="detail-body">
+      <section><h2>The display is a choice.</h2><p>The CRT treatment uses a curved frame, restrained scanlines, a subtle colour mask and glass shading. It is an artistic approximation, not a simulation of a particular television. Text stays real, selectable HTML.</p><p>Use CRT to remove the screen effects, Motion to settle the decoration, and the sun/moon switch for the Harbor Daylight companion. Reduced-motion preferences are respected. There is no strobe, autoplay audio or forced boot sequence.</p></section>
+      <section><h2>Original pixels. Shared foundations.</h2><p>The workshop and project illustrations were created for this concept. They are not game screenshots, product screenshots, or a likeness of a real person.</p><p>The display palette is based on <a href="https://github.com/Zanark/DeepSeaFoam">DeepSeaFoam</a>, derived from <a href="https://ethanschoonover.com/solarized/">Ethan Schoonover's Solarized</a>. Harbor Daylight is a portfolio-specific light adaptation. <a href="/licenses/theme.txt">Palette attribution and license</a>.</p></section>
+      <section><h2>Made for the browser.</h2><p>Astro renders the pages ahead of time. TypeScript handles the controls and local sketches, with GSAP for small entrance animations. No account, backend, tracker, camera permission, or external embed is required.</p><p>Pixelify Sans and IBM Plex Mono are self-hosted under the SIL Open Font License: <a href="/licenses/pixelify-sans-OFL.txt">Pixelify Sans</a> and <a href="/licenses/ibm-plex-mono-OFL.txt">IBM Plex Mono</a>. No visitor font requests go to Google. Animation library terms: <a href="/licenses/gsap.txt">GSAP license</a>.</p></section>
+      <section><h2>Research, not a copied theme.</h2><p>The display concept draws on <a href="https://www.datagubbe.se/crt/">the relationship between CRTs and pixel art</a>, browser <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/image-rendering">pixel-image rendering</a>, and <a href="https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html">motion-control guidance</a>. It does not claim to reproduce the physics or readability of every historical CRT.</p></section>
+      <section><h2>Not on the air yet.</h2><p>This is an unpublished local concept. The private research, dossiers, source records, personal contact details and raw operational material are not part of the browser files. The copy is newly written for review; nothing here grants publication approval.</p></section>
+    </div>
+  </article>
+</Television>

@@ -1,138 +1,114 @@
-# Zanark's portfolio
+# Zanark Signal
 
-A static portfolio hosted on GitHub Pages. The current landing page is a small
-construction site: **Zanark at work**, bold industrial signage, a crane lifting
-a code block, and three hard-hatted workers hammering, signaling, and moving
-materials. Blueprint foundations, cones, and striped barriers complete the
-scene. The full portfolio is still to come.
+An unpublished, local-first portfolio concept for Debashish Mishra. The entire
+experience lives inside a stylized CRT television: original pixel artwork,
+DeepSeaFoam phosphor colors, channel navigation, tangible display controls, and
+real engineering stories.
 
-**Website:** [zanark.github.io](https://zanark.github.io/)
+**Publication is on hold. Do not commit, push, deploy, release, or upload this
+preview without the owner's explicit request.** The existing public construction
+page and `underConstruction` backup branch have not been changed by this work.
 
-**Repository:** [Zanark/Zanark.github.io](https://github.com/Zanark/Zanark.github.io)
+## Run locally
 
-## Project structure
+Use Node.js 24 LTS and npm.
+
+```powershell
+npm ci
+npm test
+npm run build
+npm run preview -- --port 4321
+```
+
+Open **http://127.0.0.1:4321/**. The preview binds to loopback and serves the built
+`dist` output, never the repository or private research root. Stop a foreground
+server with `Ctrl+C`. For source development, `npm run dev` also binds to loopback;
+use the built preview when sharing a screen or reviewing the finished experience.
+
+## Explore
+
+- Six channels: Signal, Work, Play, Story, Lab, and Contact.
+- Four generalized engineering stories and six independent-project detail pages.
+- An original midnight-workshop illustration and three project pixel illustrations.
+- Channel buttons and `1` through `6` keyboard shortcuts.
+- CRT-effects toggle, motion toggle, dark/light display, and a reversible standby button.
+- A keyboard-accessible pixel sketchpad with local PNG export.
+- A clearly synthetic evidence-readiness experiment, never connected to real systems.
+- A newly written readable/printable profile, not a private dossier download.
+- Real static routes, a themed 404 and a colophon with attribution/research links.
+
+The interface has no autoplay audio, webcam requests, analytics, external embeds
+or visitor-time font service calls. Fonts and art are local. Reduced motion
+disables decorative animation, and ordinary navigation/content remain available
+without JavaScript. CRT treatment is an artistic approximation, not a claim of
+physical display accuracy or universal accessibility certification.
+
+## Architecture
 
 ```text
-site/
-  index.html       Construction-site landing page
-  404.html         Construction detour / not-found page
-  palette.css      Canonical dark and adapted light colors
-  styles.css       Shared responsive styles
-  theme.js         Theme preference and toggle
-  favicon.svg      Original hard-hat mark
-  theme-LICENSE.txt  Palette attribution and upstream MIT notice
-  barlow-condensed-800-latin.woff2  Self-hosted construction-sign type
-  font-LICENSE.txt  Font provenance and SIL Open Font License
-tests/
-  theme.test.cjs   Dependency-free theme behavior tests
-  palette.test.cjs Palette contrast and public-page contracts
-  construction.test.cjs Font provenance, sign and worker contracts
-.github/
-  workflows/
-    pages.yml      Public-site-only deployment
+src/
+  components/     Small Astro UI building blocks and local lab
+  data/           Curated local-review content, separate from rendering
+  layouts/        Shared television shell
+  lib/            Pure interaction logic
+  pages/          Static home, profile, project and work routes
+  scripts/        Typed display controls and browser-only experiments
+  styles/         CRT treatment, layout and semantic palette
+public/
+  art/            Original self-contained pixel SVGs
+  fonts/          Licensed self-hosted Latin WOFF2 assets
+  licenses/       Font, theme and animation-library notices
+checks/           Dependency-free Node behavior/source checks
+scripts/          Built-output privacy and internal-link gate
+dist/             Generated local preview only; ignored by Git
 ```
 
-The site uses plain HTML, CSS, original inline SVG illustrations, and a small
-theme script. It has no package dependencies, build step, third-party runtime
-requests, analytics, audio, or backend. This placeholder does not introduce
-the proposed framework for the future portfolio.
+Astro 7 and TypeScript generate the static pages. GSAP provides restrained
+entrance animation; CSS handles the glass, mask and scan beam. React and WebGL
+were not added because these interactions do not need them. Dependencies are
+locked in `package-lock.json`; TypeScript 6 is used because the installed Astro
+checker does not accept TypeScript 7.
 
-## Construction lettering and artwork
-
-The signs use **Barlow Condensed ExtraBold**, an upright, condensed sans-serif,
-in uppercase instead of editorial italic lettering. The unmodified Latin
-WOFF2 is self-hosted (22,464 bytes), preloaded and displayed with a fallback
-while it loads. Visitors do not contact Google Fonts. The font's source,
-SHA-256 and complete SIL Open Font License are in `site/font-LICENSE.txt`.
-Its sign-inspired character is a design choice, not a regulatory signage claim.
-
-All three workers are original SVG illustrations using the existing theme
-palette, hard hats and high-visibility vests. No new palette colors, copied
-character artwork, stock images, or animation dependencies were introduced.
-
-## Themes
-
-Dark is the default, regardless of the operating system's theme. The header
-switch animates a sunrise when entering light mode and a sunset when returning
-to dark mode. Both the homepage and the not-found page share the same switch.
-
-Dark colors preserve the semantic roles of
-[DeepSeaFoam](https://github.com/Zanark/DeepSeaFoam), derived from
-[Solarized](https://ethanschoonover.com/solarized/). The **Harbor Daylight** light
-companion uses warm paper, pale sea-glass panels, deep teal ink, and darker
-seafoam interactions. It is a portfolio-specific adaptation, not a canonical
-upstream light release. Tokens live in `site/palette.css`; attribution and the
-upstream license are retained in `site/theme-LICENSE.txt`.
-
-A visitor's explicit choice is saved only in this site's local storage and
-applied before the page paints. Open tabs stay in sync. If browser storage is
-blocked or full, switching still works for the current page and a console
-warning explains that the preference may not persist.
-
-The switch supports keyboard input and respects reduced-motion preferences.
-Without JavaScript the content remains available in dark mode, and the inactive
-switch stays hidden.
-
-The sign's hazard tape scrolls smoothly left in a seamless loop. It joins the
-crane, warning light and workers in CSS animation. **Pause scene** stops all of
-them using a native checkbox, including without JavaScript.
-Reduced motion keeps the scene still and removes the unnecessary pause control.
-The detour page's tape stays still; browsers without CSS `:has()` retain a static
-home-page band rather than showing animation they cannot pause.
-No percentage or countdown pretends to measure actual portfolio progress.
-
-Run the theme, palette contrast, and page-contract tests with Node.js 22 or newer:
-
-```powershell
-node --test
-```
-
-## Local preview
-
-From the repository root, using Python 3:
-
-```powershell
-python -m http.server 8000 --bind 127.0.0.1 --directory site
-```
-
-Open <http://127.0.0.1:8000>. Stop the server with `Ctrl+C`.
-
-Only `site` is served. Do not start a server from the repository root without
-the `--directory site` option.
-
-## GitHub Pages deployment
-
-The [Deploy GitHub Pages workflow](.github/workflows/pages.yml) runs on pushes to
-`master` and can also be started manually from the repository's Actions tab.
-
-1. In **Settings > Pages > Build and deployment**, set **Source** to
-   **GitHub Actions**.
-2. Push the public site changes to `master`.
-3. Open the workflow run in **Actions** and follow its deployment link.
-
-The workflow checks the public file allowlist, rejects symbolic/hard links,
-uploads **only `site`**, and deploys through the `github-pages` environment.
-It uses commit-pinned official GitHub actions. Deployment permissions are limited
-to the deploy job; a failed preparation job cannot deploy.
-
-If new public assets are added, update the allowlist in `pages.yml` after
-reviewing them. The current allowlist is intentionally small while the site
-is a placeholder.
+The old `site` and `tests` deletions were deliberate user changes and remain
+deleted. The previous construction version is preserved in its Git history and
+backup branch, not restored into this implementation.
 
 ## Content and privacy
 
-Only explicitly reviewed public content belongs in `site`. Local research and
-agent context are excluded from Git and must never be copied into site assets,
-downloads, archives, HTML comments, or deployment artifacts. Ignore rules alone
-are not a publication safeguard.
+This is an **editorial preview**, not approved public copy. The private research
+pack was read across all 162 files, including all 358 pages of the 13 PDFs.
+The three overlapping dossiers were read independently rather than counted as
+separate corroboration. The source corrections take precedence over older
+generated resume language.
 
-Before publishing, inspect the staged diff and confirm these commands list no
-private files:
+Browser content is newly authored and generalized. There are no raw source
+records, private PDFs, employer resource identifiers, customer names, personal
+contact fields, claimed certifications, fabricated impact counters or copied
+review quotations. Public source links that could not be confirmed were omitted.
+The interactive lab and artwork are original illustrations, not product
+screenshots, production simulations, or hidden connections to external services.
 
-```powershell
-git diff --cached
-git ls-files -- .portfolio-input .agent-context
-```
+`.portfolio-input`, `.agent-context`, dependencies, build caches and local
+artifacts stay ignored. The build never imports the private inputs. The output
+gate rejects private-source markers, hidden/linked files, unexpected formats,
+source maps and broken local links. Passing that gate does not grant disclosure
+or publication approval.
 
-Do not deploy or archive the repository root. The future portfolio and resume
-will use separately approved content rather than the private research inputs.
+The local workflow is **manual validation only** and has no publishing job,
+artifact upload or Pages-write permission. This edit has not changed the workflow
+on GitHub because nothing has been pushed.
+
+## Visual foundations and rights
+
+DeepSeaFoam is derived from Ethan Schoonover's Solarized. Its dark semantic roles
+remain the primary reference. Harbor Daylight is the previously documented
+portfolio-specific companion, not a new upstream release. CRT-case material
+uses existing DeepSeaFoam preview neutrals as decorative hardware colors.
+
+Pixelify Sans and IBM Plex Mono are distributed under their included SIL Open
+Font Licenses. GSAP retains its own license and notices. Original pixel scenes
+were created for this concept; no game sprites, third-party portraits, supplied
+showcase music or rights-uncertain media are reused.
+
+Research links and the distinction between the CRT approximation and real
+historical displays are included in the `/colophon/` page.

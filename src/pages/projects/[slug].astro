@@ -1,0 +1,22 @@
+---
+import Television from "../../layouts/Television.astro";
+import Icon from "../../components/Icon.astro";
+import { projects, type Project } from "../../data/portfolio";
+export function getStaticPaths() { return projects.map((project) => ({ params: { slug: project.slug }, props: { project } })); }
+interface Props { project: Project; }
+const { project } = Astro.props;
+---
+<Television title={project.title} description={project.summary} channel="projects">
+  <article class="detail-page">
+    <a class="back-link" href="/#projects"><Icon name="arrow" /> Back to the toy box</a>
+    <header class="detail-hero"><p class="eyebrow"><span>INDEPENDENT PROJECT</span> {project.status.toUpperCase()}</p><h1>{project.title}<br /><span>{project.tagline}</span></h1><p class="detail-intro">{project.description}</p></header>
+    <div class="detail-meta"><div><strong>Built with</strong>{project.tools.join(" / ")}</div><div><strong>Approach</strong>Personal, AI-assisted development and iterative review</div></div>
+    {project.art && <figure class="detail-art"><img class="pixel-art" src={project.art} width="240" height="160" alt={`Original conceptual pixel illustration for ${project.title}.`} /><figcaption>Original portfolio illustration, not an application screenshot.</figcaption></figure>}
+    <div class="detail-body">
+      <section><h2>The decisions behind it</h2><ul>{project.decisions.map((decision) => <li>{decision}</li>)}</ul></section>
+      <section><h2>Where it stands</h2><p>{project.limitation}</p></section>
+      <p class="editorial-note">This local portfolio describes documented work without implying universal compatibility, adoption figures, or final product acceptance.</p>
+    </div>
+    <div class="detail-actions">{project.source && <a class="primary-button" href={project.source}>Explore the source <Icon name="external" /></a>}{project.demo && <a class="secondary-button" href={project.demo}>Visit the project <Icon name="external" /></a>}<a class="secondary-button" href="/#projects">More projects <Icon name="arrow" /></a></div>
+  </article>
+</Television>

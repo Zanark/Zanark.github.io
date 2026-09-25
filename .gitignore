@@ -4,3 +4,9 @@ index_old.html
 old/
 /.agent-context/
 /.portfolio-input/
+/node_modules/
+/dist/
+/.astro/
+/.preview-artifacts/
+/.env
+/.env.*
